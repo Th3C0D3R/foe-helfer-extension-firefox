@@ -42,7 +42,7 @@ browser.runtime.onInstalled.addListener(() => {
 		}
 
 		browser.tabs.create({
-			url: 'https://foe-rechner.de/extension/chrome?v=' + version + '&lang=' + lng
+			url: 'https://foe-rechner.de/extension/firefox?v=' + version + '&lang=' + lng
 		});
 	}
 });

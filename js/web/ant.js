@@ -834,7 +834,7 @@ let MainParser = {
 	showInfo: (title, msg, time)=> {
 		let t = time === undefined ? 4000 : time;
 
-		chrome.runtime.sendMessage(extID, {type: 'message', title: title, msg: msg, time: t});
+		browser.runtime.sendMessage(extID, {type: 'message', title: title, msg: msg, time: t});
 	},
 
 
@@ -882,7 +882,7 @@ let MainParser = {
 
 			// wenn es nicht leer ist, abschicken
 			if(player.length > 0){
-				chrome.runtime.sendMessage(extID, {
+				browser.runtime.sendMessage(extID, {
 					type: 'send2Api',
 					url: ApiURL + 'OtherPlayers/?player_id=' + ExtPlayerID + '&guild_id=' + ExtGuildID + '&world=' + ExtWorld,
 					data: JSON.stringify(player)
@@ -975,7 +975,7 @@ let MainParser = {
 			data.push({lgs: lgs});
 
 			// ab zum Server
-			chrome.runtime.sendMessage(extID, {
+			browser.runtime.sendMessage(extID, {
 				type: 'send2Api',
 				url: ApiURL + 'OtherPlayersLGs/?player_id=' + ExtPlayerID + '&guild_id=' + ExtGuildID + '&world=' + ExtWorld,
 				data: JSON.stringify(data)
@@ -1008,7 +1008,7 @@ let MainParser = {
 			return;
 		}
 
-		chrome.runtime.sendMessage(extID, {
+		browser.runtime.sendMessage(extID, {
 			type: 'send2Api',
 			url: ApiURL + 'GEXPlayer/?player_id=' + ExtPlayerID + '&guild_id=' + ExtGuildID + '&world=' + ExtWorld,
 			data: JSON.stringify(d)
@@ -1031,7 +1031,7 @@ let MainParser = {
 				ranking: d['ranking'],
 			};
 
-		chrome.runtime.sendMessage(extID, {
+		browser.runtime.sendMessage(extID, {
 			type: 'send2Api',
 			url: ApiURL + 'GEXChampionship/?player_id=' + ExtPlayerID + '&guild_id=' + ExtGuildID + '&world=' + ExtWorld,
 			data: JSON.stringify(data)
@@ -1052,7 +1052,7 @@ let MainParser = {
         ExtWorld = window.location.hostname.split('.')[0];
         CurrentEraID = Technologies.Eras[d['era']['era']];
 
-		chrome.runtime.sendMessage(extID, {
+		browser.runtime.sendMessage(extID, {
 			type: 'storeData',
 			key: 'current_guild_id',
 			data: ExtGuildID
@@ -1060,21 +1060,21 @@ let MainParser = {
 		localStorage.setItem('current_guild_id', ExtGuildID);
 
 		ExtPlayerID = d['player_id'];
-		chrome.runtime.sendMessage(extID, {
+		browser.runtime.sendMessage(extID, {
 			type: 'storeData',
 			key: 'current_player_id',
 			data: ExtPlayerID
 		});
 		localStorage.setItem('current_player_id', ExtPlayerID);
 
-		chrome.runtime.sendMessage(extID, {
+		browser.runtime.sendMessage(extID, {
 			type: 'storeData',
 			key: 'current_world',
 			data: ExtWorld
 		});
 		localStorage.setItem('current_world', ExtWorld);
 
-		chrome.runtime.sendMessage(extID, {
+		browser.runtime.sendMessage(extID, {
 			type: 'storeData',
 			key: 'current_player_name',
 			data: d['user_name']
@@ -1120,7 +1120,7 @@ let MainParser = {
 		};
 
 		// ab zum Server
-		chrome.runtime.sendMessage(extID, {
+		browser.runtime.sendMessage(extID, {
 			type: 'send2Api',
 			url: ApiURL + 'SelfPlayer/?player_id=' + ExtPlayerID + '&guild_id=' + ExtGuildID + '&world=' + ExtWorld,
 			data: JSON.stringify(data)
@@ -1136,7 +1136,7 @@ let MainParser = {
 	 */
 	GreatBuildings: (d)=>{
 
-		chrome.runtime.sendMessage(extID, {
+		browser.runtime.sendMessage(extID, {
 			type: 'send2Api',
 			url: ApiURL + 'LGInvest/?player_id=' + ExtPlayerID + '&guild_id=' + ExtGuildID + '&world=' + ExtWorld,
 			data: JSON.stringify(d)
@@ -1189,7 +1189,7 @@ let MainParser = {
 		if(lgs.length > 0)
 		{
 			// ab zum Server
-			chrome.runtime.sendMessage(extID, {
+			browser.runtime.sendMessage(extID, {
 				type: 'send2Api',
 				url: ApiURL + 'SelfPlayerLGs/?player_id=' + ExtPlayerID + '&guild_id=' + ExtGuildID + '&world=' + ExtWorld,
 				data: JSON.stringify(lgs)
@@ -1225,7 +1225,7 @@ let MainParser = {
 	 * @constructor
 	 */
 	SaveLGInventory: (d)=>{
-		chrome.runtime.sendMessage(extID, {
+		browser.runtime.sendMessage(extID, {
 			type: 'send2Api',
 			url: ApiURL + 'LGInventory/?player_id=' + ExtPlayerID + '&guild_id=' + ExtGuildID + '&world=' + ExtWorld,
 			data: JSON.stringify(d)
@@ -1327,7 +1327,7 @@ let MainParser = {
 		}
 
 		if(data.length > 0){
-			chrome.runtime.sendMessage(extID, {
+			browser.runtime.sendMessage(extID, {
 				type: 'send2Api',
 				url: ApiURL + 'FriendsList/?player_id=' + ExtPlayerID + '&guild_id=' + ExtGuildID + '&world=' + ExtWorld,
 				data: JSON.stringify(d)

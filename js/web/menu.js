@@ -422,7 +422,7 @@ let Menu = {
 		let btn_sp = $('<span />');
 
 		btn_sp.on('click', function() {
-			chrome.runtime.sendMessage(extID, {type: 'chat', player: ExtPlayerID, guild: ExtGuildID, world: ExtWorld});
+			browser.runtime.sendMessage(extID, {type: 'chat', player: ExtPlayerID, guild: ExtGuildID, world: ExtWorld});
 		});
 
 		btn.append(btn_sp);
