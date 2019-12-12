@@ -1,0 +1,48 @@
+/*
+ * **************************************************************************************
+ *
+ * Dateiname:                 popup.js
+ * Projekt:                   foe
+ *
+ * erstellt von:              Daniel Siekiera <daniel.siekiera@gmail.com>
+ * zu letzt bearbeitet:       20.09.19, 11:02 Uhr
+ *
+ * Copyright © 2019
+ *
+ * **************************************************************************************
+ */
+
+let lng = window.navigator.language.split('-')[0];
+let i18n = {
+	'de' : {
+		'title' : 'FoE Helfer',
+		'desc' : "Dir gefällt diese kleine kostenlose Extension und du möchtest sie supporten damit das weiterhin so bleibt?<br> Dann ist jede kleine Spende für Support immer gern gesehen.",
+		'thanks' : 'Vielen Dank!'
+	},
+	'en' : {
+		'title' : 'FoE Helper',
+		'desc' : "You like this little free extension and you want to support it so that it stays that way? <br> Then every little donation for support is always welcome.",
+		'thanks' : 'Thank you so much!'
+	},
+	'fr' : {
+		'title' : 'FoE Assistant',
+		'desc' : "Vous aimez cette petite extension gratuite et vous voulez la soutenir pour continuer ainsi ? <br> Chaque petite donation pour le support est toujours la bienvenue.",
+		'thanks' : 'Merci beaucoup !'
+	}
+};
+
+$(function(){
+	$('body').on('click', '.foe-link', ()=> {
+		browser.tabs.create({url: "https://foe-rechner.de/"});
+	});
+
+	$('body').on('click', '.paypal-link', ()=> {
+		browser.tabs.create({url: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CNZWYJWRFY3T2&source=url"});
+	});
+
+	if(lng !== 'de'){
+		$('[data-translate]').each(function(){
+			$(this).html( i18n[lng][$(this).data('translate')] )
+		});
+	}
+});
