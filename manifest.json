@@ -48,11 +48,6 @@
 		}
 	],
 
-  	"externally_connectable" : {
-	  	"matches": ["https://*.forgeofempires.com/*"],
-	  	"ids": ["*"]
-	},
-
 	"background": {
 	  	"scripts": ["js/background.js"],
 	  	"persistent": true
